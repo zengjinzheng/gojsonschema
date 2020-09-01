@@ -385,12 +385,8 @@ func TestIncorrectRef(t *testing.T) {
 	assert.Equal(t, "Object has no key 'fail'", err.Error())
 
 	schemaLoader2 := NewStringLoader(incorrectRefSchema2)
-	s, err := NewSchema(schemaLoader)
-
-    assert.Nil(t, s)
-	assert.Equal(t, "Object has no key 'fail'", err.Error())schemaLoader := NewStringLoader(incorrectRefSchema)
-    s, err = NewSchema(schemaLoader2)
-
+	s, err := NewSchema(schemaLoader2)
+    
 	assert.Nil(t, s)
 	assert.Equal(t, "Invalid type. Expected: string, given: $ref", err.Error())
 }
