@@ -372,6 +372,10 @@ const incorrectRefSchema = `{
   "$ref" : "#/fail"
 }`
 
+const incorrectRefSchema2 = `{
+	"$ref" : 123
+}`
+
 func TestIncorrectRef(t *testing.T) {
 
 	schemaLoader := NewStringLoader(incorrectRefSchema)
@@ -379,4 +383,117 @@ func TestIncorrectRef(t *testing.T) {
 
 	assert.Nil(t, s)
 	assert.Equal(t, "Object has no key 'fail'", err.Error())
+
+	schemaLoader2 := NewStringLoader(incorrectRefSchema2)
+	s, err := NewSchema(schemaLoader)
+
+    assert.Nil(t, s)
+	assert.Equal(t, "Object has no key 'fail'", err.Error())schemaLoader := NewStringLoader(incorrectRefSchema)
+    s, err = NewSchema(schemaLoader2)
+
+	assert.Nil(t, s)
+	assert.Equal(t, "Invalid type. Expected: string, given: $ref", err.Error())
+}
+
+func TestSetRootSchemaName(t *testing.T) {
+	
+	schema, _ := NewSchema(NewStringLoader(`{"type": "object"}`))
+	schema.SetRootSchemaName("blablabla")
+	result, _ := schema.Validate(NewStringLoader(`"foo"`))
+	for _, e := range result.Errors() {
+		assert.Eqult(t, "blablabla: Invalid type. Expected: object, given: string", e.Error())
+	}
+}
+
+func TestIncorrectId(t *testing.T) {
+
+	const incorrectId = `{
+		"schema": "http://json-schema.org/draft-07/schema#",
+		"$id": 123
+	}`
+
+	schemaLoader := NewStringLoader(incorrectPorpertyNames)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t, "Invalid type. Expected: string, given: $id", err.Error())
+}
+
+func TestIncorrectDefinitions(t *testing.T) {
+
+	const incorrectDefinitionsSchema1 = `{
+		"schema": "http://json-schema.org/draft-04/schema#",
+		"definitions" : 123
+	}`
+	const incorrectDefinitionsSchema2 = `{
+		"schema": "http://json-schema.org/draft-04/schema#",
+		"definitions": {"foo": 1}
+	}`
+
+	schemaLoader1 := NewStringLoader(incorrectDefinitionsSchema1)
+	s, err := NewSchema(schemaLoader1)
+
+	assert.Nil(t,s)
+	assert.Equal(t, "Invalid type. Expected: array of schemas, given: definitions", err.Error())
+
+	schemaLoader2 := NewStringLoader(incorrectDefinitionsSchema2)
+	s, err := NewSchema(schemaLoader2)
+	assert.Nil(t,s)
+	assert.Equal(t, "Invalid type. Expected: array of schemas, given: definitions", err.Error())
+}
+
+func TestIncorrectPorpertyNames(t *testing.T) {
+	
+	const incorrectPorpertyNames = `{
+		"schema" : {"$ref" : "http://json-schema.org/draft-06/schema#"},
+		"propertyNames" : 3
+	}`
+
+	schemaLoader := NewStringLoader(incorrectPorpertyNames)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: valid schema, given: propertyNames", err.Error())
+}
+
+func TestIncorrectTitle(t *testing.T) {
+
+	const incorrectTitleSchema = `{
+		"schema": "http://json-schema.org/draft-04/schema#",
+		"title": 123
+	}`
+
+	schemaLoader := NewStringLoader(incorrectTitleSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: string, given: title", err.Error())
+}
+
+func TestIncorrectPatternPorperties(t *testing.T) {
+	
+	const incorrectPatternPropertiesSchema = `{
+		"schema": "http://json-schema.org/draft-04/schema#",
+		"patternProperties": 123
+	}`
+
+	schemaLoader := NewStringLoader(incorrectPatternPropertiesSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: valid schema, given: title", err.Error())
+}
+
+func TestIncorrectDescription(t *testing.T) {
+
+	const incorrectDescriptionSchema = `{
+		"schema": "http://json-schema.org/draft-04/schema#",
+		"description": 123
+	}`
+
+	schemaLoader := NewStringLoader(incorrectDescriptionSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: string, given: description", err.Error())
 }
