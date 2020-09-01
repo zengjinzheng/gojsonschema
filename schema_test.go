@@ -385,30 +385,29 @@ func TestIncorrectRef(t *testing.T) {
 	assert.Equal(t, "Object has no key 'fail'", err.Error())
 
 	schemaLoader2 := NewStringLoader(incorrectRefSchema2)
-	s, err := NewSchema(schemaLoader2)
-    
+	s, err = NewSchema(schemaLoader2)
 	assert.Nil(t, s)
 	assert.Equal(t, "Invalid type. Expected: string, given: $ref", err.Error())
 }
 
 func TestSetRootSchemaName(t *testing.T) {
-	
+
 	schema, _ := NewSchema(NewStringLoader(`{"type": "object"}`))
 	schema.SetRootSchemaName("blablabla")
 	result, _ := schema.Validate(NewStringLoader(`"foo"`))
 	for _, e := range result.Errors() {
-		assert.Eqult(t, "blablabla: Invalid type. Expected: object, given: string", e.Error())
+		assert.Equal(t, "blablabla: Invalid type. Expected: object, given: string", e.Error())
 	}
 }
 
 func TestIncorrectId(t *testing.T) {
 
-	const incorrectId = `{
+	const incorrectIdSchema = `{
 		"schema": "http://json-schema.org/draft-07/schema#",
 		"$id": 123
 	}`
 
-	schemaLoader := NewStringLoader(incorrectPorpertyNames)
+	schemaLoader := NewStringLoader(incorrectIdSchema)
 	s, err := NewSchema(schemaLoader)
 
 	assert.Nil(t,s)
@@ -433,7 +432,7 @@ func TestIncorrectDefinitions(t *testing.T) {
 	assert.Equal(t, "Invalid type. Expected: array of schemas, given: definitions", err.Error())
 
 	schemaLoader2 := NewStringLoader(incorrectDefinitionsSchema2)
-	s, err := NewSchema(schemaLoader2)
+	s, err = NewSchema(schemaLoader2)
 	assert.Nil(t,s)
 	assert.Equal(t, "Invalid type. Expected: array of schemas, given: definitions", err.Error())
 }
