@@ -396,7 +396,7 @@ func TestSetRootSchemaName(t *testing.T) {
 	schema.SetRootSchemaName("blablabla")
 	result, _ := schema.Validate(NewStringLoader(`"foo"`))
 	for _, e := range result.Errors() {
-		assert.Equal(t, "blablabla: Invalid type. Expected: object, given: string", e.Error())
+		assert.Equal(t, "blablabla: Invalid type. Expected: object, given: string", e.String())
 	}
 }
 
