@@ -1,7 +1,7 @@
 [![GoDoc](https://godoc.org/github.com/zengjinzheng/gojsonschema?status.svg)](https://godoc.org/github.com/zengjinzheng/gojsonschema)
 [![Build Status](https://travis-ci.org/zengjinzheng/gojsonschema.svg)](https://travis-ci.org/zengjinzheng/gojsonschema)
 [![Go Report Card](https://goreportcard.com/badge/github.com/zengjinzheng/gojsonschema)](https://goreportcard.com/report/github.com/zengjinzheng/gojsonschema)
-[![Coverage](https://codecov.io/gh/zengjinzheng/gojsonschema/branch/master/graph/badge.svg)](https://codecov.io/gh/zengjinzheng/gojsonschema)
+[![Coverage](https://codecov.io/gh/zengjinzheng/gojsonschema/branch/add_tests/graph/badge.svg)](https://codecov.io/gh/zengjinzheng/gojsonschema)
 
 # gojsonschema
 
