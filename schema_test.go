@@ -476,7 +476,7 @@ func TestIncorrectPatternPorperties(t *testing.T) {
 	s, err := NewSchema(schemaLoader)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"Invalid type. Expected: valid schema, given: title", err.Error())
+	assert.Equal(t,"Invalid type. Expected: valid schema, given: patternProperties", err.Error())
 }
 
 func TestIncorrectDescription(t *testing.T) {
