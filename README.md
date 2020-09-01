@@ -1,6 +1,7 @@
-[![GoDoc](https://godoc.org/github.com/xeipuuv/gojsonschema?status.svg)](https://godoc.org/github.com/xeipuuv/gojsonschema)
-[![Build Status](https://travis-ci.org/xeipuuv/gojsonschema.svg)](https://travis-ci.org/xeipuuv/gojsonschema)
-[![Go Report Card](https://goreportcard.com/badge/github.com/xeipuuv/gojsonschema)](https://goreportcard.com/report/github.com/xeipuuv/gojsonschema)
+[![GoDoc](https://godoc.org/github.com/zengjinzheng/gojsonschema?status.svg)](https://godoc.org/github.com/zengjinzheng/gojsonschema)
+[![Build Status](https://travis-ci.org/zengjinzheng/gojsonschema.svg)](https://travis-ci.org/zengjinzheng/gojsonschema)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zengjinzheng/gojsonschema)](https://goreportcard.com/report/github.com/zengjinzheng/gojsonschema)
+[![Coverage](https://codecov.io/gh/zengjinzheng/gojsonschema/branch/master/graph/badge.svg)](https://codecov.io/gh/zengjinzheng/gojsonschema)
 
 # gojsonschema
 
