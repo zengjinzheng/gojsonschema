@@ -557,8 +557,8 @@ func TestIncorrectMinimum(t *testing.T) {
 
 func TestIncorrectExclusiveMinimum(t *testing.T) {
 
-	const incorrectExclusiveMinimumSchema1 = `{"exclusiveminimum": true}`
-	const incorrectExclusiveMinimumSchema2 = `{"exclusiveminimum": ""}`
+	const incorrectExclusiveMinimumSchema1 = `{"exclusiveMinimum": trAue}`
+	const incorrectExclusiveMinimumSchema2 = `{"exclusiveMinimum": ""}`
 
 	schemaLoader1 := NewStringLoader(incorrectExclusiveMinimumSchema1)
 	s, err := NewSchema(schemaLoader1)
