@@ -554,3 +554,51 @@ func TestIncorrectMinimum(t *testing.T) {
 	assert.Nil(t,s)
 	assert.Equal(t,"minimum must be of a number", err.Error())
 }
+
+func TestIncorrectExclusiveMinimum(t *testing.T) {
+
+	const incorrectExclusiveMinimumSchema1 = `{"exclusiveminimum": true}`
+	const incorrectExclusiveMinimumSchema2 = `{"exclusiveminimum": ""}`
+
+	schemaLoader1 := NewStringLoader(incorrectExclusiveMinimumSchema1)
+	s, err := NewSchema(schemaLoader1)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"exclusiveminimum cannot be used without minimum", err.Error())
+
+	schemaLoader2 := NewStringLoader(incorrectExclusiveMinimumSchema2)
+	s, err = NewSchema(schemaLoader2)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: boolean/number, given: exclusiveminimum", err.Error())
+}
+
+func TestIncorrectMaximum(t *testing.T) {
+
+	const incorrectMaximumSchema = `{"maximum": ""}`
+
+	schemaLoader := NewStringLoader(incorrectMaximumSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"maximum must be of a number ", err.Error())
+}
+
+func TestIncorrectExclusiveMaximum(t *testing.T) {
+
+	const incorrectExclusiveMinimumSchema1 = `{"exclusivemaximum": ""}`
+	const incorrectExclusiveMinimumSchema2 = `{"exclusivemaximum": true}`
+
+	schemaLoader1 := NewStringLoader(incorrectExclusiveMaximumSchema1)
+	s, err := NewSchema(schemaLoader1)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: boolean/number, given: exclusivemaximum", err.Error())
+
+	schemaLoader2 := NewStringLoader(incorrectExclusiveMaximumSchema2)
+	s, err = NewSchema(schemaLoader2)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"exclusivemaximum cannot be used without maximum", err.Error())
+}
+
