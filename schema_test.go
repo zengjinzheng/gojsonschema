@@ -515,15 +515,15 @@ func TestIncorrectAdditionalItems(t *testing.T) {
 	assert.Equal(t,"Invalid type. Expected: boolean/valid schema, given: additionalItems", err.Error())
 }
 
-func TestIncorrectAdditionalPorperties(t *testing.T) {
+func TestIncorrectAdditionalProperties(t *testing.T) {
 
-	const incorrectAdditionalPorpertiesSchema = `{"additionalPorperties": 123}`
+	const incorrectAdditionalPropertiesSchema = `{"additionalProperties": 123}`
 
-	schemaLoader := NewStringLoader(incorrectAdditionalPorpertiesSchema)
+	schemaLoader := NewStringLoader(incorrectAdditionalPropertiesSchema)
 	s, err := NewSchema(schemaLoader)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"Invalid type. Expected: boolean/valid schema, given: additionalPorperties", err.Error())
+	assert.Equal(t,"Invalid type. Expected: boolean/valid schema, given: additionalProperties", err.Error())
 }
 
 func TestIncorrectMultipleOf(t *testing.T) {
