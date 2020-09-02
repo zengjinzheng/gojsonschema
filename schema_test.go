@@ -514,3 +514,43 @@ func TestIncorrectAdditionalItems(t *testing.T) {
 	assert.Nil(t,s)
 	assert.Equal(t,"Invalid type. Expected: boolean/valid schema, given: additionalItems", err.Error())
 }
+
+func TestIncorrectAdditionalPorperties(t *testing.T) {
+
+	const incorrectAdditionalPorpertiesSchema = `{"additionalPorperties": 123}`
+
+	schemaLoader := NewStringLoader(incorrectAdditionalPorpertiesSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: boolean/valid schema, given: additionalPorperties", err.Error())
+}
+
+func TestIncorrectMultipleOf(t *testing.T) {
+
+	const incorrectMultipleOfSchema1 = `{"multipleOf": ""}`
+	const incorrectMultipleOfSchema2 = `{"multipleOf": 0}`
+
+	schemaLoader1 := NewStringLoader(incorrectMultipleOfSchema1)
+	s, err := NewSchema(schemaLoader1)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: number, given: multipleOf", err.Error())
+
+	schemaLoader2 := NewStringLoader(incorrectMultipleOfSchema2)
+	s, err = NewSchema(schemaLoader2)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"multipleOf must be strictly greater than 0", err.Error())
+}
+
+func TestIncorrectMinimum(t *testing.T) {
+
+	const incorrectMinimumSchema = `{"minimum": ""}`
+
+	schemaLoader := NewStringLoader(incorrectMinimumSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"minimum must be of number", err.Error())
+}
