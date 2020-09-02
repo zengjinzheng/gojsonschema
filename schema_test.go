@@ -552,5 +552,5 @@ func TestIncorrectMinimum(t *testing.T) {
 	s, err := NewSchema(schemaLoader)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"minimum must be of number", err.Error())
+	assert.Equal(t,"minimum must be of a number", err.Error())
 }
