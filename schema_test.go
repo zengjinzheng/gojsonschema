@@ -557,7 +557,7 @@ func TestIncorrectMinimum(t *testing.T) {
 
 func TestIncorrectExclusiveMinimum(t *testing.T) {
 
-	const incorrectExclusiveMinimumSchema1 = `{"exclusiveMinimum": trAue}`
+	const incorrectExclusiveMinimumSchema1 = `{"exclusiveMinimum": true}`
 	const incorrectExclusiveMinimumSchema2 = `{"exclusiveMinimum": ""}`
 
 	schemaLoader1 := NewStringLoader(incorrectExclusiveMinimumSchema1)
@@ -581,7 +581,7 @@ func TestIncorrectMaximum(t *testing.T) {
 	s, err := NewSchema(schemaLoader)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"maximum must be of a number ", err.Error())
+	assert.Equal(t,"maximum must be of a number", err.Error())
 }
 
 func TestIncorrectExclusiveMaximum(t *testing.T) {
