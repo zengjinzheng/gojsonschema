@@ -586,8 +586,8 @@ func TestIncorrectMaximum(t *testing.T) {
 
 func TestIncorrectExclusiveMaximum(t *testing.T) {
 
-	const incorrectExclusiveMinimumSchema1 = `{"exclusivemaximum": ""}`
-	const incorrectExclusiveMinimumSchema2 = `{"exclusivemaximum": true}`
+	const incorrectExclusiveMaximumSchema1 = `{"exclusivemaximum": ""}`
+	const incorrectExclusiveMaximumSchema2 = `{"exclusivemaximum": true}`
 
 	schemaLoader1 := NewStringLoader(incorrectExclusiveMaximumSchema1)
 	s, err := NewSchema(schemaLoader1)
