@@ -492,3 +492,25 @@ func TestIncorrectDescription(t *testing.T) {
 	assert.Nil(t,s)
 	assert.Equal(t,"Invalid type. Expected: string, given: description", err.Error())
 }
+
+func TestIncorrectType(t *testing.T) {
+
+	const := incorrectTypeSchema = `{"type": 1}`
+
+	schemaLoader := NewStringLoader(incorrectTypeSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: string/array of strings, given: type", err.Error())
+}
+
+func TestIncorrectAdditionalItems(t *testing.T) {
+
+	const := incorrectAdditionalItemsSchema = `{"additionalItems": 123}`
+
+	schemaLoader := NewStringLoader(incorrectAdditionalItemsSchema)
+	s, err := NewSchema(schemaLoader)
+
+	assert.Nil(t,s)assert.Nil(t,s)
+	assert.Equal(t,"Invalid type. Expected: boolean/valid schema, given: additionalItems", err.Error())
+}
