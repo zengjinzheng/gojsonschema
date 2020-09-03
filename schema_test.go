@@ -602,3 +602,38 @@ func TestIncorrectExclusiveMaximum(t *testing.T) {
 	assert.Equal(t,"exclusiveMaximum cannot be used without maximum", err.Error())
 }
 
+func TestIncorrectMinLength(t *testing.T) {
+
+	const incorrectMinLengthSchema1 = `{"minLength": ""}`
+	const incorrectMinLengthSchema2 = `{"minLength": -1}`
+
+	schemaLoader1 := NewStringLoader(incorrectminLengthSchema1)
+	s, err := NewSchema(schemaLoader1)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"minLength must be of a integer", err.Error())
+
+	schemaLoader1 := NewStringLoader(incorrectminLengthSchema1)
+	s, err = NewSchema(schemaLoader2)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"minLength must bu greater than or equal to 0", err.Error())
+}
+
+func TestIncorrectMaxLength(t *testing.T) {
+
+	const incorrectMaxLengthSchema1 = `{"maxLength": ""}`
+	const incorrectMaxLengthSchema1 = `{"maxLength": -1}`
+
+	schemaLoader1 := NewStringLoader(incorrectmaxLengthSchema1)
+	s, err := NewSchema(schemaLoader1)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"maxLength must be of a integer", err.Error())
+
+	schemaLoader2 := NewStringLoader(incorrectmaxLengthSchema2)
+	s, err = NewSchema(schemaLoader2)
+
+	assert.Nil(t,s)
+	assert.Equal(t,"maxLength must bu greater than or equal to 0", err.Error())
+}
