@@ -607,13 +607,13 @@ func TestIncorrectMinLength(t *testing.T) {
 	const incorrectMinLengthSchema1 = `{"minLength": ""}`
 	const incorrectMinLengthSchema2 = `{"minLength": -1}`
 
-	schemaLoader1 := NewStringLoader(incorrectminLengthSchema1)
+	schemaLoader1 := NewStringLoader(incorrectMinLengthSchema1)
 	s, err := NewSchema(schemaLoader1)
 
 	assert.Nil(t,s)
 	assert.Equal(t,"minLength must be of a integer", err.Error())
 
-	schemaLoader1 := NewStringLoader(incorrectminLengthSchema1)
+	schemaLoader2 := NewStringLoader(incorrectMinLengthSchema2)
 	s, err = NewSchema(schemaLoader2)
 
 	assert.Nil(t,s)
@@ -625,13 +625,13 @@ func TestIncorrectMaxLength(t *testing.T) {
 	const incorrectMaxLengthSchema1 = `{"maxLength": ""}`
 	const incorrectMaxLengthSchema1 = `{"maxLength": -1}`
 
-	schemaLoader1 := NewStringLoader(incorrectmaxLengthSchema1)
+	schemaLoader1 := NewStringLoader(incorrectMaxLengthSchema1)
 	s, err := NewSchema(schemaLoader1)
 
 	assert.Nil(t,s)
 	assert.Equal(t,"maxLength must be of a integer", err.Error())
 
-	schemaLoader2 := NewStringLoader(incorrectmaxLengthSchema2)
+	schemaLoader2 := NewStringLoader(incorrectMaxLengthSchema2)
 	s, err = NewSchema(schemaLoader2)
 
 	assert.Nil(t,s)
