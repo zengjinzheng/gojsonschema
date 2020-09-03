@@ -611,13 +611,13 @@ func TestIncorrectMinLength(t *testing.T) {
 	s, err := NewSchema(schemaLoader1)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"minLength must be of a integer", err.Error())
+	assert.Equal(t,"minLength must be of an integer", err.Error())
 
 	schemaLoader2 := NewStringLoader(incorrectMinLengthSchema2)
 	s, err = NewSchema(schemaLoader2)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"minLength must bu greater than or equal to 0", err.Error())
+	assert.Equal(t,"minLength must be greater than or equal to 0", err.Error())
 }
 
 func TestIncorrectMaxLength(t *testing.T) {
@@ -629,11 +629,11 @@ func TestIncorrectMaxLength(t *testing.T) {
 	s, err := NewSchema(schemaLoader1)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"maxLength must be of a integer", err.Error())
+	assert.Equal(t,"maxLength must be of an integer", err.Error())
 
 	schemaLoader2 := NewStringLoader(incorrectMaxLengthSchema2)
 	s, err = NewSchema(schemaLoader2)
 
 	assert.Nil(t,s)
-	assert.Equal(t,"maxLength must bu greater than or equal to 0", err.Error())
+	assert.Equal(t,"maxLength must be greater than or equal to 0", err.Error())
 }
