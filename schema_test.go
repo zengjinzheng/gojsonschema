@@ -623,7 +623,7 @@ func TestIncorrectMinLength(t *testing.T) {
 func TestIncorrectMaxLength(t *testing.T) {
 
 	const incorrectMaxLengthSchema1 = `{"maxLength": ""}`
-	const incorrectMaxLengthSchema1 = `{"maxLength": -1}`
+	const incorrectMaxLengthSchema2 = `{"maxLength": -1}`
 
 	schemaLoader1 := NewStringLoader(incorrectMaxLengthSchema1)
 	s, err := NewSchema(schemaLoader1)
